@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\APIResponse;
 use App\Services\ServiceInterface;
 use Illuminate\Support\Facades\DB;
 
@@ -22,14 +23,14 @@ abstract class ApiService implements ServiceInterface
         try {
             $this->validate($inputData);
             $this->process($inputData);
-            $this->results['response_code'] = "";
+            $this->results['response_code'] = SUCCESS_CODE;
             DB::commit();
         } catch (\Exception $err) {
             DB::rollBack();
-            $this->results['response_code'] = ($err->getCode() == 0) ? : $err->getCode();
+            $this->results['response_code'] = ($err->getCode() == 0) ? FAILURE_CODE : $err->getCode();
             $this->results['message'] = $err->getMessage();
         }
 
-        return Response::json($this->results, $this->results['response_code']);
+        return APIResponse::json($this->results, $this->results['response_code']);
     }
 }
