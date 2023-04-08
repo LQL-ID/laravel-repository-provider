@@ -25,4 +25,11 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    private function registerService($serviceName, $className)
+    {
+        $this->app->singleton($serviceName, function () use ($className) {
+            return new $className;
+        });
+    }
 }

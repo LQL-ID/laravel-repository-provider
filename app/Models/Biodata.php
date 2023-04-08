@@ -12,4 +12,5 @@ class Biodata extends Model
     protected $table = 'biodatas';
 
     protected $guarded = ['id'];
+
 }
