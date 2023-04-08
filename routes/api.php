@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(BiodataController::class)->group(function() {
     Route::get('biodata', 'getBiodata');
+    Route::get('biodata/{id?}', 'getSpecificBiodata');
     Route::post('biodata/create', 'createBiodata');
     Route::put('biodata/{id]/edit', 'updateBiodata');
 });

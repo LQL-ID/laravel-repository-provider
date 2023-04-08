@@ -6,7 +6,11 @@ use App\Helpers\APIResponse;
 use App\Models\Biodata;
 use Illuminate\Http\Request;
 use App\Helpers\Paginator;
-use App\Http\Requests\Biodata\CreateRequest;
+use App\Http\Requests\Biodata\{
+    GetRequest,
+    CreateRequest,
+    UpdateRequest,
+};
 
 class BiodataController extends Controller
 {
@@ -23,8 +27,18 @@ class BiodataController extends Controller
         return APIResponse::json($result);
     }
 
+    public function getSpecificBiodata(GetRequest $request)
+    {
+        return app('GetSpecificBiodata')->executeWithResponseAndException($request->all());
+    }
+
     public function createBiodata(CreateRequest $request)
     {
         return app('StoreBiodata')->executeWithResponseAndException($request->except('_token'));
+    }
+
+    public function updateBiodata(UpdateRequest $request)
+    {
+        return app('UpdateBiodata')->executeWithResponseAndException($request->except('_token'));
     }
 }

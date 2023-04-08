@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
-use App\Services\Biodata\StoreBiodata;
+use App\Services\Biodata\{
+    GetBiodata,
+    StoreBiodata,
+    UpdateBiodata,
+};
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,7 +20,9 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         // Biodata
+        $this->registerService('GetSpecificBiodata', GetBiodata::class);
         $this->registerService('StoreBiodata', StoreBiodata::class);
+        $this->registerService('UpdateBiodata', UpdateBiodata::class);
         // End
     }
 
