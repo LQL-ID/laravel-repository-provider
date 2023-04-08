@@ -9,6 +9,7 @@ use App\Helpers\Paginator;
 use App\Http\Requests\Biodata\{
     GetRequest,
     CreateRequest,
+    DeleteRequest,
     UpdateRequest,
 };
 
@@ -39,6 +40,11 @@ class BiodataController extends Controller
 
     public function updateBiodata(UpdateRequest $request)
     {
-        return app('UpdateBiodata')->executeWithResponseAndException($request->except('_token'));
+        return app('UpdateBiodata')->executeWithResponseAndException($request->except('_token', '_method'));
+    }
+
+    public function deleteBiodata(DeleteRequest $request)
+    {
+        return app('DestroyBiodata')->executeWithResponseAndException($request->all());
     }
 }

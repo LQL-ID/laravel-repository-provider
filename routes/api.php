@@ -19,5 +19,6 @@ Route::controller(BiodataController::class)->group(function() {
     Route::get('biodata', 'getBiodata');
     Route::get('biodata/{id?}', 'getSpecificBiodata');
     Route::post('biodata/create', 'createBiodata');
-    Route::put('biodata/{id]/edit', 'updateBiodata');
+    Route::put('biodata/{id?}', 'updateBiodata');
+    Route::delete('biodata/{id}/delete'. 'deleteBiodata');
 });
